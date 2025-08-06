@@ -1,0 +1,207 @@
+/*
+// Code your design here
+module not_using_nand(a,y);
+  input a;
+  output y;
+  
+  nand n1(y,a,a);
+  
+endmodule
+*/
+/*
+module and_using_nand(a,b,y);
+  input a,b;
+  output y;
+  wire x0;
+  
+  nand n0(x0,a,b);
+  nand n1(y,x0,x0);
+  
+endmodule
+*/
+/*
+module or_using_nand(a,b,y);
+  input a,b;
+  output y;
+  
+  wire x0,x1;
+  
+  nand n0(x0,a,a);
+  nand n1(x1,b,b);
+  nand n2(y,x0,x1);
+  
+endmodule
+*/
+
+module xor_using_nand(a,b,y);
+  input a,b;
+  output y;
+  
+  wire x0,x1,x2;
+  
+  nand n0(x0,a,b);
+  nand n1(x1,a,x0);
+  nand n2(x2,b,x0);
+  nand n3(y,x1,x2);
+endmodule
+
+module xnor_using_nand(a,b,y);
+  input a,b;
+  output y;
+  
+  wire x0,x1,x2,w3;
+  
+  nand n0(x0,a,b);
+  nand n1(x1,a,x0);
+  nand n2(x2,b,x0);
+  nand n3(x3,x1,x2);
+  nand n4(y,x3,x3);
+endmodule
+
+/*module tb_not_using_nand();
+
+  reg a;
+  wire y;
+
+  // Instantiate the NOT gate using NAND
+  not_using_nand n2(a, y);
+
+  initial begin
+    // Generate VCD file for waveform viewer
+    $dumpfile("dump.vcd");     // Name of the output file
+    $dumpvars(1, tb_not_using_nand); // Dump all variables in this module
+
+    // Apply test vectors
+    a = 1'b0;
+    #10;
+
+    a = 1'b1;
+    #10;
+
+    $finish; // End the simulation
+  end
+
+endmodule
+*/
+/*
+module tb_and_using_nand();
+
+  reg a;
+  reg b;
+  wire y;
+
+  // Instantiate the NOT gate using NAND
+  and_using_nand n2(a,b, y);
+
+  initial begin
+    // Generate VCD file for waveform viewer
+    $dumpfile("dump.vcd");     // Name of the output file
+    $dumpvars(1, tb_and_using_nand); // Dump all variables in this module
+
+    // Apply test vectors
+    a = 1'b0; b=1'b0;
+    #10;
+
+    a = 1'b1; b=1'b1;
+    #10;
+
+    $finish; // End the simulation
+  end
+
+endmodule
+*/
+/*
+module tb_or_using_nand();
+
+  reg a;
+  reg b;
+  wire y;
+
+  // Instantiate the NOT gate using NAND
+  or_using_nand n2(a,b, y);
+
+  initial begin
+    // Generate VCD file for waveform viewer
+    $dumpfile("dump.vcd");     // Name of the output file
+    $dumpvars(1, tb_or_using_nand); // Dump all variables in this module
+
+    // Apply test vectors
+    a = 1'b0; b=1'b0;
+    #10;
+
+    a = 1'b1; b=1'b1;
+    #10;
+    
+    a = 1'b0; b=1'b1;
+    #10;
+
+    $finish; // End the simulation
+  end
+
+endmodule
+*/
+/*
+module tb_xor_using_nand();
+
+  reg a;
+  reg b;
+  wire y;
+
+  // Instantiate the NOT gate using NAND
+  xor_using_nand n2(a,b, y);
+
+  initial begin
+    // Generate VCD file for waveform viewer
+    $dumpfile("dump.vcd");     // Name of the output file
+    $dumpvars(1, tb_xor_using_nand); // Dump all variables in this module
+
+    // Apply test vectors
+    a = 1'b0; b=1'b0;
+    #10;
+
+    a = 1'b1; b=1'b1;
+    #10;
+    
+    a = 1'b0; b=1'b1;
+    #10;
+    
+     a = 1'b1; b=1'b0;
+    #10;
+
+    $finish; // End the simulation
+  end
+
+endmodule
+*/
+
+module tb_xnor_using_nand();
+
+  reg a;
+  reg b;
+  wire y;
+
+  // Instantiate the NOT gate using NAND
+  xnor_using_nand n2(a,b, y);
+
+  initial begin
+    // Generate VCD file for waveform viewer
+    $dumpfile("dump.vcd");     // Name of the output file
+    $dumpvars(1, tb_xnor_using_nand); // Dump all variables in this module
+
+    // Apply test vectors
+    a = 1'b0; b=1'b0;
+    #10;
+
+    a = 1'b1; b=1'b1;
+    #10;
+    
+    a = 1'b0; b=1'b1;
+    #10;
+    
+     a = 1'b1; b=1'b0;
+    #10;
+
+    $finish; // End the simulation
+  end
+
+endmodule
